@@ -24,10 +24,10 @@ const itemSchema = mongoose.Schema({
         required: true,
         default: "Admin"
     },
-    isRecurring: {
-        type: Boolean,
+    recurring: {
+        type: String,
         required: true,
-        default: false
+        default: "no"
     }
 });
 

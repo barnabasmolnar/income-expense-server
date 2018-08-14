@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const Item = require("./Item");
 const bodyParser = require("body-parser");
+const cors = require('cors');
+ 
+app.use(cors());
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
@@ -32,5 +35,5 @@ app.put("/api/items/:id", (req, res) => {
 });
 
 app.listen(3001, () => {
-    console.log("Example app listening on port 3000!");
+    console.log("Example app listening on port 3001!");
 });
