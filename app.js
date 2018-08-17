@@ -3,7 +3,8 @@ const app = express();
 const Item = require("./Item");
 const bodyParser = require("body-parser");
 const cors = require('cors');
- 
+const getRate = require("./getRate");
+
 app.use(cors());
 
 app.use(express.static("public"));
@@ -15,9 +16,9 @@ app.get("/api/items", (req, res) => {
         .catch(() => res.sendStatus(500))
 });
 
-app.post("/api/items", (req, res) => {
-    const newItem = new Item(req.body);
-    newItem.save()
+app.post("/api/items", (req, res) => {  
+    getRate(req.body)
+        .then(itemObj => new Item(itemObj).save())
         .then(saved => res.json(saved))
         .catch(() => res.sendStatus(400))
 });

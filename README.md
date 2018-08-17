@@ -7,9 +7,10 @@ Work in progress server for the [Income & Expense app](https://github.com/barnab
 * [x] Set up REST API
 * [x] Set up MongoDB database and Mongoose Schema
 * [x] Connect with front end
+* [x] implement 3rd party currency conversion API
 
 ### Todo:
-* [ ] implement 3rd party currency conversion API
+Empty (for now...)
 
 ---
 
