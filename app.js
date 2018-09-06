@@ -2,10 +2,7 @@ const express = require("express");
 const app = express();
 const Item = require("./Item");
 const bodyParser = require("body-parser");
-const cors = require('cors');
 const getRate = require("./getRate");
-
-app.use(cors());
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
@@ -30,11 +27,12 @@ app.delete("/api/items/:id", (req, res) => {
 });
 
 app.put("/api/items/:id", (req, res) => {
-    Item.update({_id: req.params.id}, req.body)
-        .then(() => res.sendStatus(204))
+    getRate(req.body)
+        .then(itemObj => Item.findOneAndUpdate({_id: req.params.id}, itemObj, {new: true}))
+        .then(saved => res.json(saved))
         .catch(() => res.sendStatus(400))
 });
 
 app.listen(3001, () => {
-    console.log("Example app listening on port 3001!");
+    console.log("App listening on port 3001!");
 });
